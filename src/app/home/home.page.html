@@ -6,18 +6,15 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let task of tasks">
+    <ion-item *ngFor="let task of tasks" (click)="goToTaskDetails(task.id)">
       <ion-label>
         <h2>{{ task.title }}</h2>
+        <h3>{{ task.description}}</h3>
         <p>Vence: {{ task.dueDate | date: 'shortDate' }}</p>
       </ion-label>
       <ion-checkbox slot="end" [checked]="task.completed"></ion-checkbox>
     </ion-item>
   </ion-list>
-  
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="goToCreateTask()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+
+  <ion-button expand="full" color="primary" (click)="goToCreateTask()">Crear Tarea</ion-button>
 </ion-content>

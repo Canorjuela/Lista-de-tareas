@@ -11,12 +11,15 @@ const routes: Routes = [
     loadChildren: () => import('./create-task/create-task.module').then(m => m.CreateTaskPageModule)
   },
   {
+    path: 'task-details/:id', 
+    loadChildren: () => import('./task-details/task-details.module').then(m => m.TaskDetailsPageModule)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
   }
 ];
-
 
 @NgModule({
   imports: [

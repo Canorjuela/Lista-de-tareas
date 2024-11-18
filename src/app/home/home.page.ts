@@ -11,7 +11,7 @@ import { Task } from '../models/task.model';
 export class HomePage implements OnInit {
   tasks: Task[] = []; // Arreglo para almacenar las tareas
 
-  constructor(private taskService: TaskService, private router: Router) {}  
+  constructor(private taskService: TaskService, private router: Router) {}
 
   ngOnInit() {
     this.loadTasks(); // Cargar las tareas al iniciar la página
@@ -23,7 +23,6 @@ export class HomePage implements OnInit {
   }
 
   addDefaultTasks() {
-    // Solo agregar tareas si el servicio está vacío
     if (this.tasks.length === 0) {
       this.taskService.addTask({
         id: '1',
@@ -41,7 +40,6 @@ export class HomePage implements OnInit {
         priority: 'high',
         completed: false,
       });
-      
       this.loadTasks();
     }
   }
@@ -49,5 +47,10 @@ export class HomePage implements OnInit {
   goToCreateTask() {
     // Redirigir a la página de crear tarea
     this.router.navigate(['/create-task']);  
+  }
+
+  goToTaskDetails(id: string) {
+    // Redirigir a la página de detalles de la tarea pasando el ID
+    this.router.navigate([`/task-details/${id}`]);  
   }
 }
