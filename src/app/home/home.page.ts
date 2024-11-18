@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../services/task.service'; // Importa el servicio
-import { Task } from '../models/task.model'; // Importa la interfaz Task
+import { Router } from '@angular/router';  
+import { TaskService } from '../services/task.service';
+import { Task } from '../models/task.model';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +11,11 @@ import { Task } from '../models/task.model'; // Importa la interfaz Task
 export class HomePage implements OnInit {
   tasks: Task[] = []; // Arreglo para almacenar las tareas
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private router: Router) {}  
 
   ngOnInit() {
     this.loadTasks(); // Cargar las tareas al iniciar la página
-    this.addDefaultTasks(); // Añadir tareas por defecto si no hay tareas en el servicio
+    this.addDefaultTasks(); // Añadir tareas por defecto 
   }
 
   loadTasks() {
@@ -40,8 +41,13 @@ export class HomePage implements OnInit {
         priority: 'high',
         completed: false,
       });
-      // Ahora las tareas deberían cargarse en la vista
+      
       this.loadTasks();
     }
+  }
+
+  goToCreateTask() {
+    // Redirigir a la página de crear tarea
+    this.router.navigate(['/create-task']);  
   }
 }

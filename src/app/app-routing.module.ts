@@ -3,10 +3,20 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+  },
+  {
+    path: 'create-task',
+    loadChildren: () => import('./create-task/create-task.module').then(m => m.CreateTaskPageModule)
+  },
+  {
     path: '',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)  // Carga directamente la página Home
+    redirectTo: 'home',
+    pathMatch: 'full'
   }
 ];
+
 
 @NgModule({
   imports: [
