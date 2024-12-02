@@ -1,20 +1,40 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="custom">
     <ion-title>Lista de Tareas</ion-title>
+    <ion-buttons slot="end">
+
+      <ion-img [src]="'assets/logo/logo.png'" alt="Logo" class="logo"></ion-img>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let task of tasks" (click)="goToTaskDetails(task.id)">
-      <ion-label>
+    <ion-item *ngFor="let task of tasks">
+      <ion-label (click)="goToTaskDetails(task.id)">
         <h2>{{ task.title }}</h2>
-        <h3>{{ task.description}}</h3>
+        <h3>{{ task.description }}</h3>
         <p>Vence: {{ task.dueDate | date: 'shortDate' }}</p>
       </ion-label>
-      <ion-checkbox slot="end" [checked]="task.completed"></ion-checkbox>
+      <ion-checkbox
+        slot="end"
+        [checked]="task.completed"
+        color="success"
+      ></ion-checkbox>
+      <ion-button
+        slot="end"
+        color="danger"
+        fill="clear"
+        (click)="confirmDelete(task.id)"
+      >
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-list>
 
-  <ion-button expand="full" color="primary" (click)="goToCreateTask()">Crear Tarea</ion-button>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="goToCreateTask()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

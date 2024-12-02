@@ -1,5 +1,9 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="custom">
+    <ion-buttons slot="end">
+
+      <ion-img [src]="'assets/logo/logo.png'" alt="Logo" class="logo"></ion-img>
+    </ion-buttons>
     <ion-title>{{ task.id ? 'Editar' : 'Crear' }} Tarea</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -35,6 +39,6 @@
       <ion-checkbox [(ngModel)]="task.completed" name="completed"></ion-checkbox>
     </ion-item>
 
-    <ion-button expand="full" type="submit">{{ task.id ? 'Actualizar' : 'Crear' }} Tarea</ion-button>
+    <ion-button color="success" expand="full" type="submit">{{ task.id ? 'Actualizar' : 'Crear' }} Tarea</ion-button>
   </form>
 </ion-content>

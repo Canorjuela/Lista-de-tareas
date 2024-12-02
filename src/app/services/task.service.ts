@@ -33,7 +33,13 @@ export class TaskService {
   }
 
   // Eliminar una tarea por su ID
-  deleteTask(id: string): void {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
+  deleteTask(taskId: string): void {
+    this.tasks = this.tasks.filter(task => task.id !== taskId);
+    this.saveTasksToStorage(); 
+  }
+
+  // Guardar tareas en el almacenamiento local
+  private saveTasksToStorage(): void {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 }
